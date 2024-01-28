@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Avaliando meu gato</title>
+  </head>
+  <body>
+    <div class="background">
+      <form id="survey-form" method="POST" action='https://register-demo.freecodecamp.org'>
+      <h1 id="title">Avaliando meu gato</h1>
+      <p id="description">Esse convite lhe foi enviado para avaliar o meu gato, agora responda esse formulário.</p>
+      <hr>
+        <fieldset>
+          <legend>Informações básicas</legend>
+          <label id="name-label" for="name">Nome: <input id="name" type="text" placeholder="seu nome aqui" required/></label>
+          <label id="email-label" for="email">Email: <input id="email" type="email" placeholder="email@exemplo.com.br" required/></label>
+          <label id="number-label" for="number">Idade: <input id="number" type="number" min=15 max=150 placeholder="Idade" required/></label>
+        </fieldset>
+        <fieldset>
+          <legend>Você gostaria de ter esse gato? Não estou doando.</legend>
+          <select id="dropdown">
+            <option>Sim</option>
+            <option>Claro</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <legend>Qual é a cor do gato?</legend>
+          <label for="yellow"><input type="radio" id="yellow" name="color" value="yellow" checked> Amarelo</label>
+          <label for="orange"><input type="radio" id="orange" name="color" value="orange"> Laranja</label>
+        </fieldset>
+        <fieldset>
+          <legend>Quais atributos chamam mais atenção para você?</legend>
+          <label for="fat"><input type="checkbox" name="appearence" id="fat" value="fat"> Gordo<label>
+          <label for="beautiful"><input type="checkbox" name="appearence" id="beautiful" value="beautiful"> Bonito</label>
+          <label for="lazy"><input type="checkbox" name="appearence" id="lazy" value="lazy"> Preguiçoso</label>
+          <label for="lovely"><input type="checkbox" name="appearence" id="lovely" value="lovely"> Amável</label>
+          <label for="grumpy"><input type="checkbox" name="appearence" id="grumpy" value="grumpy"> Mal-humorado</label>
+          <label for="thin"><input type="checkbox" name="appearence" id="thin" value="thin" checked> Magro</label>
+        </fieldset>
+        <fieldset>
+          <label for="comments">
+          Comentários adicionais: <textarea id="comments" placeholder="Comece dizendo porque ele é muito bonito e todas as suas qualidades"></textarea>
+          </label>
+        </fieldset>
+        <hr>
+        <label for="terms-and-conditions">
+          <input id="terms-and-conditions" type="checkbox" required name="terms-and-conditions" value="accept"/> Eu aceito os <a href="https://www.freecodecamp.org/news/terms-of-service/">termos e condições</a>
+        </label>
+        <input id="submit" type="submit" value="Enviar" />
+      </form>
+    </div>
+  </body>
+</html>

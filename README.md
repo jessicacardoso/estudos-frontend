@@ -4,4 +4,6 @@ Nesse repositório você encontrará projetos de estudo de HTML5, CSS3 e JavaScr
 
 ## 📚 Projetos
 
-- [x] **Survey Form**: Projeto desenvolvido no curso de Responsive Web Design da [freeCodeCamp](https://www.freecodecamp.org/learn/2022/responsive-web-design/build-a-survey-form-project/build-a-survey-form).
+- Curso Responsive Web Design da [freeCodeCamp](https://www.freecodecamp.org/learn/2022/responsive-web-design).
+    - [x] [**Survey Form**](/survey-form/)
+    - [x] [**Tribute Page**](/tribute-page/)

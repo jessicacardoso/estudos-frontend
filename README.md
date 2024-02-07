@@ -5,5 +5,5 @@ Nesse repositório você encontrará projetos de estudo de HTML5, CSS3 e JavaScr
 ## 📚 Projetos
 
 - Curso Responsive Web Design da [freeCodeCamp](https://www.freecodecamp.org/learn/2022/responsive-web-design).
-    - [x] [**Survey Form**](/survey-form/)
-    - [x] [**Tribute Page**](/tribute-page/)
+    - [x] [**Survey Form**](survey-form/)
+    - [x] [**Tribute Page**](tribute-page/)

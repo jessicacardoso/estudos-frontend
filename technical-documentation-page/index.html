@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="./styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <title>bdtd-scraper</title>
+    </head>
+    <body>
+        <nav id="navbar">
+            <header><a href="#main-header">bdtd-scraper</a></header>
+            <ul>
+                <li><a class="nav-link" href="#Intro">Intro</a></li>
+                <li><a class="nav-link" href="#Primeiros_passos">Primeiros passos</a></li>
+                <li><a class="nav-link" href="#Instalando">Instalando</a></li>
+                <li><a class="nav-link" href="#Usando">Usando</a></li>
+                <li><a class="nav-link" href="#Contribuindo">Contribuindo</a></li>
+            </ul>
+        </nav>
+        <main id="main-doc">
+            <header id="main-header">
+                <h1>bdtd-scraper</h1>
+            </header>
+            <section class="main-section" id="Intro">
+                <header><h2>Intro</h2></header>
+                <p>A Biblioteca Digital Brasileira de Teses e Dissertações (BDTD) é um projeto parte
+                    do <em>Instituto Brasileiro de Informação em Ciência e Tecnologia (IBICT)</em>
+                    que facilita o acesso as teses e dissertações do Brasil.</p>
+                <p>A biblioteca <strong>bdtd-scraper</strong> foi desenvolvida usando  os dados 
+                    recuperados pela API do BDTD. Essa biblioteca é uma interface em <em>python</em> 
+                    que permite realizar o download dos trabalhos que estão disponíveis publicamente.</p>
+            </section>
+            <section class="main-section" id="Primeiros_passos">
+                <header><h2>Primeiros passos</h2></header>
+                <p>Como a biblioteca foi escrita em python, é necessário possuir o python instalado
+                    em sua máquina. Esse projeto foi desenvolvido usando a versão do python 3.11, portanto,
+                    para melhor funcionamento, recomendamos o uso dessa versão.
+                </p>
+                <p>Para a construção desse projeto, usamos o 
+                    <a href="https://docs.anaconda.com/free/miniconda/" target="_blank">miniconda</a>. Recomendamos
+                    seguir as instruções de instalação da própria documentação, caso opte por usar essa ferramenta.
+                </p>
+                <h3>Instalação do Miniconda no Linux</h3>
+                <p>Esse pacote foi desenvolvido usando o sistema operacional <em>Ubuntu Linux</em>, as instruções dessa 
+                    seção são referentes aos passos que seguimos para instalar no Ubuntu.</p>
+                    <ul>
+                        <li>
+                            Realizar o download da última versão do miniconda: 
+                            <code>mkdir -p ~/miniconda3
+                                wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+                            </code>
+                        </li>
+                        <li>
+                            Instalar o miniconda:
+                            <code>bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+                                rm ~/miniconda3/miniconda.sh</code>
+                        </li>
+                        <li>
+                            Iniciar o conda:
+                            <code>~/miniconda3/bin/conda init bash</code>
+                        </li>
+                        <li>
+                            Para desativar o ambiente use:
+                            <code>conda deactivate</code>
+                        </li>
+                        <li>
+                            Sempre que precisar usar o ambiente use o comando de ativação informando o nome dele.
+                        </li>
+                </ul>
+                <h3>Criando ambiente virtual</h3>
+                <p>Com o miniconda instalado, usamos o seguinte comando para criar um ambiente virtual</p>
+                <code>conda create --name myenv python=3.11</code>
+                <p>Podemos criar vários ambientes com diferentes versões do python, mas para usar a biblioteca
+                    precisamos apenas de um. Uma vez criado, precisamos entrar no ambiente usando o seguinte comando:
+                </p>
+                <code>conda activate myenv</code>
+            </section>
+            <section class="main-section" id="Instalando">
+                <header><h2>Instalando</h2></header>
+                <p>Após ter o ambiente do python configurado e ativado, podemos prosseguir com a instalação da biblioteca usando o seguinte comando:</p>
+                <code>pip install git+https://github.com/AcademicAI/bdtd-scraper.git</code>
+            </section>
+            <section class="main-section" id="Usando">
+                <header><h2>Usando</h2></header>
+                <p>Nós podemos obter informações de um trabalho específico usando o código a seguir:</p>
+                    <code>import bdtd_scraper.api
+                        # Retornar informações sobre um trabalho específico
+                        info = bdtd_scraper.api.get_record("PUC_RIO-1_116b1dc174d74d0cdc7d451060e9129a")
+                        print(info)
+                    </code>
+                <p>Essa ferramenta permite passar demais parâmetros usados na chamada da API da BDTD.</p>
+                    <code>
+                        result = bdtd_scraper.api.get_search_results(
+                        &emsp; lookfor="covid",
+                        &emsp;  page=2,
+                        &emsp;  limit=5,
+                        &emsp;  type="AllFields",
+                        &emsp;  field=["id", "title", "authors"]
+                        )
+                    </code>
+                <p>Para percorrer todos os resultados, podemos definir um limite de resultados por página e acrescentar em uma lista:</p>
+                    <code>results = []
+                        for records in bdtd_scraper.api.get_all_results(lookfor="bumba meu boi", limit=100):
+                        &emsp; results.extend(records)
+
+                        print(len(results))
+                    </code>
+                <p>Uma funcionalidade inserida na biblioteca, é a possibilidade de realizar o download de um trabalho específico:</p>
+                    <code>from bdtd_scraper import theses_downloader
+
+                        url = 'https://doi.org/10.17771/PUCRio.acad.55901'
+                        links = theses_downloader.get_most_probable_thesis_links(url)
+                        for link in links:
+                        &emsp; print(link)
+
+                        theses_downloader.download_pdf(links[0], "tese_exemplo.pdf")
+                    </code>
+            </section>
+            <section class="main-section" id="Contribuindo">
+                <header><h2>Contribuindo</h2></header>
+                <p>Acesse o <a href="https://github.com/ApoenaX/bdtd-scraper" target="_blank">repositório do projeto</a> e solicite <em>pull requests</em></p>
+            </section>
+        </main>
+    </body>
+</html>

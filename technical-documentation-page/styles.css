@@ -143,5 +143,7 @@ code {
     border-radius: 5px;
 
     text-align: left;
+
+    overflow-wrap: break-word;
 }
 
